@@ -3,12 +3,11 @@ import { Link } from "react-router-dom";
 
 // PRODUCTOS 
 const SHOWCASE_PRODUCTS = [
-    { id: 1, name: "Torta de Chocolate", price: 15000, description: "Bizcocho húmedo con ganache de chocolate belga y frutos rojos. Ideal para celebraciones.", img: "https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=500&q=80" },
-    { id: 2, name: "Cupcakes Artesanales", price: 4500, description: "Docena de cupcakes con buttercream suave. Sabores: vainilla, red velvet, limón y chocolate.", img: "https://images.unsplash.com/photo-1576618148400-f54bed99fcfd?w=500&q=80" },
-    { id: 3, name: "Cheesecake Clásico", price: 18000, description: "Base crocante de galleta, crema de queso premium y cobertura de frutos del bosque.", img: "https://images.unsplash.com/photo-1567171466295-4afa63d4bb48?w=500&q=80" },
-    { id: 4, name: "Alfajores de Maicena", price: 3500, description: "Docena de alfajores rellenos con dulce de leche repostero y bañados en coco rallado.", img: "https://images.unsplash.com/photo-1627308595229-7830a5c91f9f?w=500&q=80" },
-    { id: 5, name: "Tarta de Frutas", price: 12000, description: "Masa quebrada, crema pastelera artesanal y frutas frescas de temporada.", img: "https://images.unsplash.com/photo-1519915028121-7d3463d20b13?w=500&q=80" },
-    { id: 6, name: "Brownies Intensos", price: 5000, description: "Porción de 6 unidades. Chocolate 70% cacao, textura húmeda y nueces crocantes.", img: "https://images.unsplash.com/photo-1606313564200-e75d5e30476c?w=500&q=80" },
+    { id: 1, name: "Cinnabons", price: 60, description: "Disfruta de 6 Cinnabons recién horneados, suaves y aromáticos, en dos sabores irresistibles: Miel de Canela, con su toque cálido y dulce, y Glaseado, cubierto con una capa cremosa y brillante.", img: "/img/cinabons.jpeg" },
+    { id: 2, name: "Cupcakes Artesanales", price: 30, description: "Media docena de cupcakes con Chantylly suave. Sabores: oreo, zanahoria y chocolate.", img: "/img/cupcake.jpeg" },
+    { id: 3, name: "Alfajores de Maicena", price: 3500, description: "Docena de alfajores rellenos con dulce de leche repostero y bañados en coco rallado.", img: "https://images.unsplash.com/photo-1627308595229-7830a5c91f9f?w=500&q=80" },
+    { id: 4, name: "Tarta de Frutas", price: 12000, description: "Masa quebrada, crema pastelera artesanal y frutas frescas de temporada.", img: "https://images.unsplash.com/photo-1519915028121-7d3463d20b13?w=500&q=80" },
+    { id: 5, name: "Brownies Intensos", price: 5000, description: "Porción de 6 unidades. Chocolate 70% cacao, textura húmeda y nueces crocantes.", img: "https://images.unsplash.com/photo-1606313564200-e75d5e30476c?w=500&q=80" },
 ];
 
 // TITULOS
@@ -27,29 +26,48 @@ export default function Home() {
         <div className="min-h-screen bg-[url('/img/fondo.jpeg')] bg-cover bg-fixed bg-center relative">
             <div className="absolute inset-0 bg-white/70 backdrop-blur-sm pointer-events-none"></div>
             <div className="relative z-10 text-black">
-                {/* HEADER */}
-                <header className="relative min-h-[40vh] flex flex-col items-center justify-center text-center px-4 bg-[url('/img/head.jpeg')] bg-cover bg-center bg-no-repeat">
-                    <div className="relative z-10 max-w-3xl">
-                        <h1 className="text-4xl md:text-6xl font-extrabold mb-4 tracking-tight">
-                            Repostería Sisi
-                        </h1>
-                        <p className="text-lg md:text-xl font-medium mb-8 text-black/90">
-                            Dulces artesanales, frescos y hechos con amor.
-                        </p>
-                        <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                            <Link
-                                to="/catalogo"
-                                className="bg-black text-white px-8 py-3 rounded-full font-bold border-2 border-black hover:bg-white hover:text-black transition shadow-lg"
-                            >
-                                🛒 Hacer Pedido
-                            </Link>
-                            <button
-                                onClick={() => setShowSchedule(true)}
-                                className="bg-transparent border-2 border-black text-black px-8 py-3 rounded-full font-bold hover:bg-black hover:text-white transition"
-                            >
-                                ℹ️ Ver Horarios
-                            </button>
+                {/* 🌈 HEADER */}
+                <header className="relative min-h-[90vh] flex items-center justify-center px-4 md:px-10 bg-[url('/img/head.jpeg')] bg-cover bg-center bg-no-repeat">
+
+                    {/* Capa para aclarar el fondo y que el logo se funda */}
+                    <div className="absolute inset-0 bg-white/25 backdrop-blur-[2px]"></div>
+
+                    {/* GRID DE 3 COLUMNAS: La clave para el centrado perfecto */}
+                    <div className="relative z-10 w-full max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 items-center gap-8 py-10">
+
+                        {/* 1. LOGO (Columna Izquierda) */}
+                        <div className="flex justify-center md:justify-start">
+                            <img
+                                src="/img/logo.jpeg"
+                                alt="Logo Repostería Sissi"
+                                /* Sin sombra, tamaño grande pero controlado */
+                                className="w-56 h-56 md:w-80 md:h-80 object-contain"
+                            />
                         </div>
+
+                        {/* 2. TEXTO Y BOTONES (Columna Central - ALINEADO AL CENTRO REAL) */}
+                        <div className="flex flex-col items-center text-center gap-6">
+                            <h1
+                                className="text-5xl md:text-7xl lg:text-8xl text-black leading-tight"
+                                style={{ fontFamily: "'Parisienne', cursive" }}
+                            >
+                                Repostería Sissi
+                            </h1>
+
+                            <p className="text-xl md:text-2xl font-medium text-black/90 max-w-xl">
+                                Dulces artesanales, frescos y hechos con amor.
+                            </p>
+
+                            <div className="flex flex-col sm:flex-row gap-4 mt-2 w-full sm:w-auto justify-center">
+                                <button onClick={() => setShowSchedule(true)} className="bg-transparent text-black px-10 py-3.5 rounded-full font-bold border-2 border-black hover:bg-black hover:text-white transition text-lg min-w-[180px]">
+                                    Ver Horarios
+                                </button>
+                            </div>
+                        </div>
+
+                        {/* 3. ESPACIO VACÍO (Columna Derecha - Necesario para equilibrar el logo) */}
+                        <div className="hidden md:block"></div>
+
                     </div>
                 </header>
 
@@ -93,7 +111,7 @@ export default function Home() {
                                         <div className="flex justify-between items-start mb-2">
                                             <h3 className="font-bold text-lg text-black leading-tight">{product.name}</h3>
                                             <span className="bg-black/90 text-white text-sm font-semibold px-2.5 py-1 rounded-full">
-                                                ${product.price.toLocaleString()}
+                                                Bs. {product.price.toLocaleString()}
                                             </span>
                                         </div>
                                         <p className="text-black/80 text-sm leading-relaxed mt-1">{product.description}</p>
@@ -124,7 +142,7 @@ export default function Home() {
                                     <h3 className="font-semibold text-xl text-black mb-3">Retiros y Entregas</h3>
                                     <p className="text-black/80 mb-4 leading-relaxed">
                                         Operamos desde <strong className="text-pink-600">Zona final America Oeste</strong> y alrededores.
-                                        Coordinamos el punto de encuentro o entrega directamente por WhatsApp.
+                                        Coordinamos entrega directamente por WhatsApp.
                                     </p>
                                     <ul className="space-y-2 text-sm text-black font-medium">
                                         <li className="flex items-start gap-2">✅ Entregas coordinadas con horario previo</li>
