@@ -76,12 +76,12 @@ export default function Catalog() {
     
     // 2. COMPILAR NOTAS
     const notes = [];
-    if (sizeObj) notes.push(`Tamaño: ${sizeObj.label}`);
+    if (sizeObj) notes.push(`Tamaño(personas): ${sizeObj.label}`);
     if (selected.flavors && selectedFlavor) {
        const flavorObj = selected.flavors.find(f => f.value === selectedFlavor);
        if (flavorObj) notes.push(`Sabor: ${flavorObj.label}`);
     }
-    if (optionObj) notes.push(`Opción: ${optionObj.label}`); // Cinnabons/Cupcakes
+    if (optionObj) notes.push(`Sabor: ${optionObj.label}`); // Cinnabons/Cupcakes
     if (extras.trim()) notes.push(extras.trim());
     
     const finalNote = notes.join(" | ");
@@ -104,7 +104,7 @@ export default function Catalog() {
     if (cart.length === 0) return alert("El carrito está vacío");
     const lines = cart.map(i => `• ${i.name} x${i.qty} ${i.extras ? `(${i.extras})` : ""} - $${(i.price * i.qty).toLocaleString()}`).join("\n");
     const total = cart.reduce((sum, i) => sum + i.price * i.qty, 0);
-    const msg = `🛒 *Nuevo Pedido*\n\n${lines}\n\n💰 *Total: $${total.toLocaleString()}*\n\n✅ Por favor confirmar.`;
+    const msg = `*Nuevo Pedido*\n\n${lines}\n\n💰 *Total: Bs. ${total.toLocaleString()}*\n\n✅ Por favor confirmar.`;
     window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`, "_blank");
   };
 
