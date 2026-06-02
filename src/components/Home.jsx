@@ -5,9 +5,14 @@ import { Link } from "react-router-dom";
 const SHOWCASE_PRODUCTS = [
     { id: 1, name: "Cinnabons", price: 60, description: "Disfruta de 6 Cinnabons recién horneados, suaves y aromáticos, en dos sabores irresistibles: Miel de Canela, con su toque cálido y dulce, y Glaseado, cubierto con una capa cremosa y brillante.", img: "/img/cinabons.jpeg" },
     { id: 2, name: "Cupcakes Artesanales", price: 30, description: "Media docena de cupcakes con Chantylly suave. Sabores: oreo, zanahoria y chocolate.", img: "/img/cupcake.jpeg" },
-    { id: 3, name: "Alfajores de Maicena", price: 3500, description: "Docena de alfajores rellenos con dulce de leche repostero y bañados en coco rallado.", img: "https://images.unsplash.com/photo-1627308595229-7830a5c91f9f?w=500&q=80" },
-    { id: 4, name: "Tarta de Frutas", price: 12000, description: "Masa quebrada, crema pastelera artesanal y frutas frescas de temporada.", img: "https://images.unsplash.com/photo-1519915028121-7d3463d20b13?w=500&q=80" },
-    { id: 5, name: "Brownies Intensos", price: 5000, description: "Porción de 6 unidades. Chocolate 70% cacao, textura húmeda y nueces crocantes.", img: "https://images.unsplash.com/photo-1606313564200-e75d5e30476c?w=500&q=80" },
+    { id: 3, name: "Alfajores Cubanos", price: 20, description: "Media docena de alfajores rellenos con dulce de leche repostero y bañados en azucar molida.", img: "/img/alfajores.jpeg" },
+    {
+        id: 4, name: "Torta Decorada", price: 190, description: "Torta decorada con crema disponible en  tamaños 8 o para 20 personas entre dos deliciosos sabores: Oreo o Zanahoria, un clásico bizcocho  y nuestra crema especial.",
+        images: [
+            "/img/torta oreo.jpeg",
+            "/img/torta zana.jpeg"
+        ]
+    },
 ];
 
 // TITULOS
@@ -19,33 +24,39 @@ const SectionTitle = ({ title }) => (
     </div>
 );
 
+
+
 export default function Home() {
     const [showSchedule, setShowSchedule] = useState(false);
+    const [activeImages, setActiveImages] = useState({});
+
+    const toggleImage = (id, totalImages) => {
+        setActiveImages(prev => {
+            const currentIndex = prev[id] || 0;
+            const nextIndex = (currentIndex + 1) % totalImages;
+            return { ...prev, [id]: nextIndex };
+        });
+    };
 
     return (
         <div className="min-h-screen bg-[url('/img/fondo.jpeg')] bg-cover bg-fixed bg-center relative">
             <div className="absolute inset-0 bg-white/70 backdrop-blur-sm pointer-events-none"></div>
             <div className="relative z-10 text-black">
-                {/* 🌈 HEADER */}
-                <header className="relative min-h-[90vh] flex items-center justify-center px-4 md:px-10 bg-[url('/img/head.jpeg')] bg-cover bg-center bg-no-repeat">
-
-                    {/* Capa para aclarar el fondo y que el logo se funda */}
+                {/* HEADER */}
+                <header className="relative min-h-[65vh] flex items-center justify-center px-4 md:px-10 bg-[url('/img/head.jpeg')] bg-cover bg-center bg-no-repeat">
                     <div className="absolute inset-0 bg-white/25 backdrop-blur-[2px]"></div>
 
-                    {/* GRID DE 3 COLUMNAS: La clave para el centrado perfecto */}
                     <div className="relative z-10 w-full max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 items-center gap-8 py-10">
-
-                        {/* 1. LOGO (Columna Izquierda) */}
+                        {/*LOGO  */}
                         <div className="flex justify-center md:justify-start">
                             <img
                                 src="/img/logo.jpeg"
                                 alt="Logo Repostería Sissi"
-                                /* Sin sombra, tamaño grande pero controlado */
                                 className="w-56 h-56 md:w-80 md:h-80 object-contain"
                             />
                         </div>
 
-                        {/* 2. TEXTO Y BOTONES (Columna Central - ALINEADO AL CENTRO REAL) */}
+                        {/* TEXTO Y BOTONES */}
                         <div className="flex flex-col items-center text-center gap-6">
                             <h1
                                 className="text-5xl md:text-7xl lg:text-8xl text-black leading-tight"
@@ -55,17 +66,10 @@ export default function Home() {
                             </h1>
 
                             <p className="text-xl md:text-2xl font-medium text-black/90 max-w-xl">
-                                Dulces artesanales, frescos y hechos con amor.
+                                Reposteria artesanal, fresco y hecho con amor.
                             </p>
 
-                            <div className="flex flex-col sm:flex-row gap-4 mt-2 w-full sm:w-auto justify-center">
-                                <button onClick={() => setShowSchedule(true)} className="bg-transparent text-black px-10 py-3.5 rounded-full font-bold border-2 border-black hover:bg-black hover:text-white transition text-lg min-w-[180px]">
-                                    Ver Horarios
-                                </button>
-                            </div>
                         </div>
-
-                        {/* 3. ESPACIO VACÍO (Columna Derecha - Necesario para equilibrar el logo) */}
                         <div className="hidden md:block"></div>
 
                     </div>
@@ -76,7 +80,7 @@ export default function Home() {
                     <div className="max-w-4xl mx-auto text-center">
                         <SectionTitle title="Sobre Nosotros" />
                         <p className="text-black/90 text-lg leading-relaxed max-w-3xl mx-auto mb-6">
-                            En <strong className="text-pink-600">Repostería Sisi</strong> cada postre está elaborado con ingredientes de primera calidad y recetas depuradas.
+                            En <strong className="text-pink-600">Repostería Sissi</strong> cada postre está elaborado con ingredientes de primera calidad y recetas depuradas.
                             Trabajamos por encargo para garantizar frescura, sabor y una presentación cuidada al detalle.
                         </p>
                         <div className="flex justify-center gap-8 text-sm font-medium text-black/80 flex-wrap">
@@ -85,7 +89,11 @@ export default function Home() {
                             <span>⏱️ Entrega puntual</span>
                         </div>
                     </div>
-                    {/* Separador visual entre secciones */}
+                    <div className="flex flex-col sm:flex-row gap-4 mt-2 w-full sm:w-auto justify-center">
+                        <button onClick={() => setShowSchedule(true)} className="bg-transparent text-black px-10 py-3.5 rounded-full font-bold border-2 border-black hover:bg-black hover:text-white transition text-lg min-w-[180px]">
+                            Ver Horarios
+                        </button>
+                    </div>
                     <div className="w-20 h-0.5 bg-black/20 mx-auto mt-16"></div>
                 </section>
 
@@ -93,31 +101,46 @@ export default function Home() {
                 <section className="py-20 px-4">
                     <div className="max-w-6xl mx-auto">
                         <SectionTitle title="Nuestros Productos" />
-                        <p className="text-black/80 text-center mb-10 max-w-2xl mx-auto font-medium">
-                            Una muestra de lo que puedes pedir. Consulta disponibilidad y personaliza tu pedido.
-                        </p>
-
                         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-                            {SHOWCASE_PRODUCTS.map((product) => (
-                                <div
-                                    key={product.id}
-                                    className="bg-white/70 backdrop-blur-md rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 group border border-black/20"
-                                    style={{ backdropFilter: 'blur(10px)', WebkitBackdropFilter: 'blur(10px)' }}
-                                >
-                                    <div className="relative overflow-hidden h-52">
-                                        <img src={product.img} alt={product.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
-                                    </div>
-                                    <div className="p-5">
-                                        <div className="flex justify-between items-start mb-2">
-                                            <h3 className="font-bold text-lg text-black leading-tight">{product.name}</h3>
-                                            <span className="bg-black/90 text-white text-sm font-semibold px-2.5 py-1 rounded-full">
-                                                Bs. {product.price.toLocaleString()}
-                                            </span>
+                            {SHOWCASE_PRODUCTS.map((product) => {
+                                // ✅ Compatibilidad: acepta images[] o img (formato viejo)
+                                const imgs = Array.isArray(product.images)
+                                    ? product.images
+                                    : [product.img || "/img/placeholder.jpg"];
+
+                                const idx = activeImages[product.id] || 0;
+                                const currentImg = imgs[Math.min(idx, imgs.length - 1)];
+
+                                return (
+                                    <div key={product.id} className="bg-white/70 backdrop-blur-md rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 group border border-black/20">
+                                        <div
+                                            className="relative overflow-hidden h-52 cursor-pointer select-none"
+                                            onClick={() => toggleImage(product.id, imgs.length)}
+                                        >
+                                            <img
+                                                src={currentImg}
+                                                alt={product.name}
+                                                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                                            />
+                                            {imgs.length > 1 && (
+                                                <span className="absolute top-3 left-3 bg-black/70 text-white text-xs px-2 py-1 rounded-full backdrop-blur-sm pointer-events-none">
+                                                    📸 {imgs.length} fotos
+                                                </span>
+                                            )}
                                         </div>
-                                        <p className="text-black/80 text-sm leading-relaxed mt-1">{product.description}</p>
+
+                                        <div className="p-5">
+                                            <div className="flex justify-between items-start mb-2">
+                                                <h3 className="font-bold text-lg text-black leading-tight">{product.name}</h3>
+                                                <span className="bg-black/90 text-white text-sm font-semibold px-2.5 py-1 rounded-full">
+                                                    Bs. {product.price.toLocaleString()}
+                                                </span>
+                                            </div>
+                                            <p className="text-black/80 text-sm leading-relaxed mt-1">{product.description}</p>
+                                        </div>
                                     </div>
-                                </div>
-                            ))}
+                                );
+                            })}
                         </div>
 
                         <div className="text-center mt-12">
@@ -222,7 +245,7 @@ export default function Home() {
                 {/* FOOTER */}
                 <footer className="bg-black text-white py-10 px-4 text-center mt-10 border-t-2 border-pink-500">
                     <p className="font-semibold mb-1">Repostería Sisi</p>
-                    <p className="text-sm text-slate-300">Dulces con alma artesanal 🍰</p>
+                    <p className="text-sm text-slate-300">Reposteria con alma artesanal 🍰</p>
                     <div className="mt-4 text-xs text-slate-500">
                         © {new Date().getFullYear()} Todos los derechos reservados.
                     </div>
