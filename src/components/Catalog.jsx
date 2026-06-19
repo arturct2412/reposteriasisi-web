@@ -9,7 +9,7 @@ const SHOWCASE_PRODUCTS = [
     id: 1,
     name: "Cinnabons",
     price: 54,
-    unit: "Media docena", // 👈 NUEVO
+    unit: "Media docena",
     description: "Disfruta de 6 Cinnabons recién horneados, suaves y aromáticos.",
     images: ["/img/cinabons.jpeg"],
     options: [
@@ -22,7 +22,7 @@ const SHOWCASE_PRODUCTS = [
     id: 2,
     name: "Cupcakes Artesanales",
     price: 30,
-    unit: "Media docena", // 👈 NUEVO
+    unit: "Media docena",
     description: "Media docena de cupcakes con Chantylly suave.",
     images: ["/img/cupcake.jpeg"],
     options: [
@@ -35,7 +35,7 @@ const SHOWCASE_PRODUCTS = [
     id: 3,
     name: "Alfajores Cubanos",
     price: 20,
-    unit: "Media docena", // 👈 NUEVO
+    unit: "Media docena",
     description: "Media docena de alfajores rellenos con dulce de leche.",
     images: ["/img/alfajores.jpeg"]
   },
@@ -43,12 +43,11 @@ const SHOWCASE_PRODUCTS = [
     id: 4,
     name: "Torta Decorada",
     price: 110,
-    // La torta NO tiene unit porque se vende por unidad
     description: "Torta decorada disponible en tamaños 8 o 20 personas. Sabores: Oreo o Zanahoria.",
     images: ["/img/torta oreo.jpeg", "/img/torta zana.jpeg"],
     sizes: [
-      { label: "8 Personas", value: "8p", price: 110 },
-      { label: "20 Personas", value: "20p", price: 190 }
+      { label: "8 Porciones", value: "8p", price: 110 },
+      { label: "20 Porciones", value: "20p", price: 190 }
     ],
     flavors: [
       { label: "Zanahoria", value: "zanahoria" },
@@ -89,12 +88,12 @@ export default function Catalog() {
 
     // 2. COMPILAR NOTAS
     const notes = [];
-    if (sizeObj) notes.push(`Tamaño(porciones): ${sizeObj.label}`);
+    if (sizeObj) notes.push(`Tamaño: ${sizeObj.label}`);
     if (selected.flavors && selectedFlavor) {
       const flavorObj = selected.flavors.find(f => f.value === selectedFlavor);
       if (flavorObj) notes.push(`Sabor: ${flavorObj.label}`);
     }
-    if (optionObj) notes.push(`Sabor: ${optionObj.label}`); 
+    if (optionObj) notes.push(`Sabor: ${optionObj.label}`);
     if (extras.trim()) notes.push(extras.trim());
 
     const finalNote = notes.join(" | ");
@@ -229,7 +228,9 @@ export default function Catalog() {
                 return <p className="text-black font-semibold mb-4">Bs. {displayPrice.toLocaleString()}</p>;
               })()}
 
-              <label className="block text-sm font-medium mb-1">Cantidad:</label>
+              <label className="block text-sm font-medium mb-1">
+                Cantidad{selected.unit ? ` (${selected.unit})` : ""}:
+              </label>
               <input type="number" min="1" value={qty} onChange={e => setQty(+e.target.value)} className="w-full border-2 border-black rounded px-3 py-2 mb-3 bg-white/50" />
 
               {/* SELECTOR DE TAMAÑO (TORTA) */}
