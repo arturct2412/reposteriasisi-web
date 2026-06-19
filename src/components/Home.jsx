@@ -7,7 +7,7 @@ const SHOWCASE_PRODUCTS = [
     { id: 2, name: "Cupcakes Artesanales", price: 30, description: "Media docena de cupcakes con Chantylly suave. Sabores: oreo, zanahoria y chocolate.", img: "/img/cupcake.jpeg" },
     { id: 3, name: "Alfajores Cubanos", price: 20, description: "Media docena de alfajores rellenos con dulce de leche repostero y bañados en azucar molida.", img: "/img/alfajores.jpeg" },
     {
-        id: 4, name: "Torta Decorada", price: 190, description: "Torta decorada con crema disponible en  tamaños 8 o para 20 personas entre dos deliciosos sabores: Oreo o Zanahoria, un clásico bizcocho  y nuestra crema especial.",
+        id: 4, name: "Torta Decorada", price: 190, description: "Torta decorada con crema, disponible en 2 tamaños, para 8 porciones y 20 porciones, entre dos deliciosos sabores: Oreo o Zanahoria, y nuestra crema especial.",
         images: [
             "/img/torta oreo.jpeg",
             "/img/torta zana.jpeg"
@@ -80,16 +80,16 @@ export default function Home() {
                     <div className="max-w-4xl mx-auto text-center">
                         <SectionTitle title="Sobre Nosotros" />
                         <p className="text-black/90 text-lg leading-relaxed max-w-3xl mx-auto mb-6">
-                            En <strong className="text-pink-600">Repostería Sissi</strong> cada postre está elaborado con ingredientes de primera calidad y recetas depuradas.
+                            En <strong className="text-pink-600">Repostería Sissi</strong> cada masita está elaborada con ingredientes de primera calidad y recetas depuradas.
                             Trabajamos por encargo para garantizar frescura, sabor y una presentación cuidada al detalle.
                         </p>
                         <div className="flex justify-center gap-8 text-sm font-medium text-black/80 flex-wrap">
-                            <span>🌿 Ingredientes frescos</span>
-                            <span>🎨 Diseños personalizados</span>
-                            <span>⏱️ Entrega puntual</span>
+                            <span>🌿 Ingredientes Frescos</span>
+                            <span>🎨 Diseños Elegantes</span>
+                            <span>⏱️ Entrega Puntual</span>
                         </div>
                     </div>
-                    <div className="flex flex-col sm:flex-row gap-4 mt-2 w-full sm:w-auto justify-center">
+                    <div className="flex flex-col sm:flex-row gap-4 mt-14 w-full sm:w-auto justify-center">
                         <button onClick={() => setShowSchedule(true)} className="bg-transparent text-black px-10 py-3.5 rounded-full font-bold border-2 border-black hover:bg-black hover:text-white transition text-lg min-w-[180px]">
                             Ver Horarios
                         </button>

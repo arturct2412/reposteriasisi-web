@@ -130,7 +130,7 @@ export default function Catalog() {
   const removeFromCart = (id) => {
     setCart((prev) => prev.filter((i) => i.id !== id));
   };
-    // 🗑️ Vaciar todo el carrito
+  // 🗑️ Vaciar todo el carrito
   const clearCart = () => {
     if (window.confirm("¿Seguro que quieres vaciar el pedido?")) {
       setCart([]);
@@ -141,13 +141,13 @@ export default function Catalog() {
       <div className="absolute inset-0 bg-white/70 backdrop-blur-sm pointer-events-none"></div>
       <div className="relative z-10">
 
-        <header className="bg-white/80 backdrop-blur-md shadow-sm py-4 px-6 flex justify-between items-center sticky top-0 z-40 border-b border-black/20">
+        <header className="bg-[url('/img/head.jpeg')] backdrop-blur-md shadow-sm py-4 px-6 flex justify-between items-center sticky top-0 z-40 border-b border-black/20">
           <Link to="/" className="text-black font-semibold hover:underline">← Volver</Link>
           <h1 className="text-lg font-bold">Catálogo</h1>
           <div className="w-16"></div>
         </header>
 
-        <main className="max-w-6xl mx-auto px-4 py-8">
+        <main className={`max-w-6xl mx-auto px-4 py-8 ${cart.length > 0 ? 'pb-80 sm:pb-8' : ''}`}>
           <h2 className="text-3xl font-bold text-center mb-8">Selecciona tus productos</h2>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -196,12 +196,12 @@ export default function Catalog() {
                   </li>
                 ))}
               </ul>
-              <button 
-                  onClick={clearCart}
-                  className="w-full mb-2 text-sm text-red-600 hover:text-red-800 font-medium py-1 hover:underline transition"
-                >
-                  🗑️ Vaciar pedido
-                </button>
+              <button
+                onClick={clearCart}
+                className="w-full mb-2 text-sm text-red-600 hover:text-red-800 font-medium py-1 hover:underline transition"
+              >
+                🗑️ Vaciar pedido
+              </button>
               <button onClick={sendToWhatsApp} className="w-full bg-black text-white py-3 rounded-xl font-bold border-2 border-black hover:bg-white hover:text-black transition">📲 Pedir por WhatsApp</button>
             </div>
           )}
