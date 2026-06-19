@@ -71,6 +71,12 @@ export default function Catalog() {
 
   const addToCart = () => {
     if (!selected) return;
+
+    //  VALIDACIÓN
+    if (selected.sizes && !selectedSize) return alert("⚠️ Por favor selecciona un tamaño.");
+    if (selected.flavors && !selectedFlavor) return alert("️ Por favor selecciona un sabor.");
+    if (selected.options && !selectedOption) return alert("⚠️ Por favor selecciona una opción (sabor).");
+
     const q = Math.max(1, qty);
 
     // 1. CALCULAR PRECIO
@@ -83,12 +89,12 @@ export default function Catalog() {
 
     // 2. COMPILAR NOTAS
     const notes = [];
-    if (sizeObj) notes.push(`Tamaño(personas): ${sizeObj.label}`);
+    if (sizeObj) notes.push(`Tamaño(porciones): ${sizeObj.label}`);
     if (selected.flavors && selectedFlavor) {
       const flavorObj = selected.flavors.find(f => f.value === selectedFlavor);
       if (flavorObj) notes.push(`Sabor: ${flavorObj.label}`);
     }
-    if (optionObj) notes.push(`Sabor: ${optionObj.label}`); // Cinnabons/Cupcakes
+    if (optionObj) notes.push(`Sabor: ${optionObj.label}`); 
     if (extras.trim()) notes.push(extras.trim());
 
     const finalNote = notes.join(" | ");
